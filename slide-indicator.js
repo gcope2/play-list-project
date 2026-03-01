@@ -5,7 +5,6 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import "./play-list-slide.js";
 
 /**
  * `play-list-project`
@@ -13,10 +12,10 @@ import "./play-list-slide.js";
  * @demo index.html
  * @element play-list-project
  */
-export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
+export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "play-list-project";
+    return "slide-indicator";
   }
 
   constructor() {
@@ -54,6 +53,12 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
       }
+      circle {
+        width: 20px;
+        height: 20px;
+        background-color: #FF0000;
+        border-radius: 50%;
+      }
     `];
   }
 
@@ -61,15 +66,11 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <h3><span>${this.t.title}:</span> ${this.title}</h3>
-        <slot></slot>
-      </div>
-      <play-list-slide></play-list-slide>
-      <div>
-        <slide-indicator></slide-indicator>
-      </div>
-      `;
+        <div>
+          <div class="circle"></div>
+        </div>
+      </div>`;
   }
 }
 
-globalThis.customElements.define(PlayListProject.tag, PlayListProject);
+globalThis.customElements.define(SlideIndicator.tag, SlideIndicator);

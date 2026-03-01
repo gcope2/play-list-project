@@ -5,7 +5,6 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import "./play-list-slide.js";
 
 /**
  * `play-list-project`
@@ -13,10 +12,10 @@ import "./play-list-slide.js";
  * @demo index.html
  * @element play-list-project
  */
-export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
+export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "play-list-project";
+    return "play-list-slide";
   }
 
   constructor() {
@@ -64,12 +63,13 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         <h3><span>${this.t.title}:</span> ${this.title}</h3>
         <slot></slot>
       </div>
-      <play-list-slide></play-list-slide>
       <div>
-        <slide-indicator></slide-indicator>
+        <h4>TOP LINE HEADING</h4>
+        <h3>Slide 1, sub-heading</h3>
+        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non gravida neque. Quisque vulputate velit eu mauris mattis, at ultricies nisl varius. Nulla facilisi. Nulla dignissim diam in dui blandit lacinia. Nulla nec viverra magna. Ut felis odio, ullamcorper eget mattis vel, ultricies sit amet purus. In massa tortor, auctor cursus dignissim et, dictum eu est. Etiam metus est, mattis ut tempor eget, aliquam aliquet massa. Duis in hendrerit tellus, id viverra odio. Cras bibendum consequat erat, id condimentum metus lobortis vitae. Duis id dictum lectus, vitae ullamcorper mi. Duis ex massa, posuere vel sapien at, pulvinar tempus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce finibus orci nec odio venenatis, eget blandit eros vehicula.</h5>
       </div>
       `;
   }
 }
 
-globalThis.customElements.define(PlayListProject.tag, PlayListProject);
+globalThis.customElements.define(PlayListSlide.tag, PlayListSlide);

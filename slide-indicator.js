@@ -53,7 +53,7 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
       }
-      circle {
+      .circle {
         width: 20px;
         height: 20px;
         background-color: #FF0000;

@@ -50,8 +50,13 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
-      h3 span {
-        font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
+      .slide-title {
+        margin-top: var(--ddd-spacing-2);
+        margin-bottom: var(--ddd-spacing-10);
+      }
+      .slide-body {
+        margin-top: var(--ddd-spacing-10);
+        margin-bottom: var(--ddd-spacing-4);
       }
     `];
   }
@@ -60,13 +65,9 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <h3><span>${this.t.title}:</span> ${this.title}</h3>
-        <slot></slot>
-      </div>
-      <div>
-        <h4>TOP LINE HEADING</h4>
-        <h3>Slide 1, sub-heading</h3>
-        <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non gravida neque. Quisque vulputate velit eu mauris mattis, at ultricies nisl varius. Nulla facilisi. Nulla dignissim diam in dui blandit lacinia. Nulla nec viverra magna. Ut felis odio, ullamcorper eget mattis vel, ultricies sit amet purus. In massa tortor, auctor cursus dignissim et, dictum eu est. Etiam metus est, mattis ut tempor eget, aliquam aliquet massa. Duis in hendrerit tellus, id viverra odio. Cras bibendum consequat erat, id condimentum metus lobortis vitae. Duis id dictum lectus, vitae ullamcorper mi. Duis ex massa, posuere vel sapien at, pulvinar tempus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce finibus orci nec odio venenatis, eget blandit eros vehicula.</h5>
+        <h5 class="title-top">TOP LINE HEADING</h5>
+        <h1 class="slide-title">Slide 1, sub-heading</h1>
+        <p class="slide-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non gravida neque. Quisque vulputate velit eu mauris mattis, at ultricies nisl varius. Nulla facilisi. Nulla dignissim diam in dui blandit lacinia. Nulla nec viverra magna. Ut felis odio, ullamcorper eget mattis vel, ultricies sit amet purus. In massa tortor, auctor cursus dignissim et, dictum eu est. Etiam metus est, mattis ut tempor eget, aliquam aliquet massa. Duis in hendrerit tellus, id viverra odio. Cras bibendum consequat erat, id condimentum metus lobortis vitae. Duis id dictum lectus, vitae ullamcorper mi. Duis ex massa, posuere vel sapien at, pulvinar tempus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce finibus orci nec odio venenatis, eget blandit eros vehicula.</p>
       </div>
       `;
   }

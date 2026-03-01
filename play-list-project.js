@@ -61,12 +61,10 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <h3><span>${this.t.title}:</span> ${this.title}</h3>
-        <slot></slot>
-      </div>
-      <play-list-slide></play-list-slide>
-      <div>
-        <slide-indicator></slide-indicator>
+        <play-list-slide></play-list-slide>
+        <div>
+          <slide-indicator></slide-indicator>
+        </div>
       </div>
       `;
   }

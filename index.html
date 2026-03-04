@@ -36,12 +36,25 @@
   <div id="demo">
     <h1>play-list-project</h1>
     <!-- this is going to do whatever the tag's defaults are -->
-    <h2>Default</h2>
-    <play-list-project></play-list-project>
-    <h2>Slot usage</h2>
-    <play-list-project data-accent="2" data-primary="17"><div>Sample slot content</div></play-list-project>
-    <h2>Property usage</h2>
-    <play-list-project id="example" title="Sample property title"></play-list-project>
+    <play-list-project index="3">
+
+      <play-list-slide topHeading="Heading 1" secondHeading="Slide 1, sub-heading">
+          <p>Nulla id ipsum ac risus cursus dictum vitae non augue. Praesent semper pellentesque orci consequat eleifend. Phasellus semper libero sit amet volutpat rutrum. Suspendisse consequat pellentesque sem in iaculis. Phasellus auctor sem quam, in ornare tellus porttitor eu. Donec nec dolor luctus, vehicula felis sed, vestibulum diam. Praesent dapibus vel ipsum vel varius. Sed at odio a lectus ultricies consectetur id ut metus. Aliquam tempor erat et diam pellentesque, eget tempus ante molestie. Integer porttitor congue augue id placerat. Vivamus velit turpis, aliquet vitae rhoncus sit amet, fringilla eu tortor. Nam et sollicitudin ipsum.</p>
+      </play-list-slide>
+
+      <play-list-slide topHeading="Heading 2" secondHeading="Slide 2, sub-heading">
+          <p>Fusce auctor euismod enim vitae rutrum. Donec commodo tempus urna a scelerisque. Donec lectus ante, venenatis a malesuada vitae, auctor in arcu. Maecenas suscipit sed est sit amet maximus. Nunc facilisis magna mi, non vehicula velit ultricies sed. Mauris ex nisl, congue id egestas quis, tempor at ligula. Quisque dapibus ante diam, eu dictum metus elementum vel. Nulla fermentum faucibus elit, eget sagittis risus tempor ut. Duis eros nunc, accumsan suscipit tortor at, venenatis laoreet odio. Nunc dictum, velit a accumsan luctus, libero nisl varius enim, id viverra nisi augue id magna. Nunc iaculis scelerisque odio, sit amet interdum eros euismod ac. Nunc tincidunt finibus massa. Maecenas accumsan gravida sapien, vel ultricies diam porttitor at. Nam tristique sapien dolor, at suscipit enim euismod a.</p>
+      </play-list-slide>
+
+      <play-list-slide topHeading="Heading 3" secondHeading="Slide 3, sub-heading">
+          <p>Aenean at vehicula urna, eget efficitur mi. Sed ut est sed purus pulvinar dapibus et ut tellus. In sed orci egestas, scelerisque ante at, tristique erat. Praesent sed lacus feugiat, ultrices erat sed, vehicula massa. Nullam sodales porta ante non ornare. Duis et mi lobortis diam bibendum tempus. Curabitur id nulla auctor, pharetra dui at, ultrices elit. Ut quis libero aliquet, tincidunt nibh id, finibus mi. Nunc eu vulputate tortor. Aliquam ac risus at leo mattis vulputate. In bibendum sapien nec porta molestie. Proin sollicitudin pharetra mauris, eu pretium tellus scelerisque ut. Mauris euismod, turpis sed lacinia tincidunt, ipsum erat lobortis tortor, nec malesuada lacus orci a arcu. Etiam consectetur libero neque, auctor accumsan diam consectetur eget. In non ligula a justo bibendum consequat nec eu lectus.</p>
+      </play-list-slide>
+
+      <play-list-slide topHeading="Heading 4" secondHeading="Slide 4, sub-heading">
+          <p>Nulla facilisi. Nulla ut ex a massa faucibus tincidunt pellentesque quis leo. Donec faucibus, lorem ut mattis imperdiet, felis ante hendrerit metus, id porttitor nisl ante ut lorem. Sed pharetra nisl libero. Quisque pharetra, urna eget vulputate suscipit, quam libero mollis lorem, id cursus lectus sem id lectus. Vestibulum aliquam, ligula id commodo tempus, justo turpis sodales sem, at consectetur odio mi sed diam. Praesent malesuada egestas fermentum. Cras laoreet rutrum lacus eu hendrerit.</p>
+      </play-list-slide>
+
+    </play-list-project>
   </div>
   <script type="module" src="./play-list-project.js"></script>
 

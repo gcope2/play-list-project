@@ -20,19 +20,16 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
+    this.total = 0;
+    this.curIndex = 0;
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      total: { type: Number },
+      curIndex: { type: Number},
     };
   }
 
@@ -42,35 +39,56 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
       }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: var(--ddd-spacing-2);
+        padding: var(--ddd-spacing-2);
       }
-      h3 span {
-        font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: var(--ddd-radius-rounded);
+        cursor: pointer;
+        background-color: var(--ddd-theme-default-limestoneLight);
       }
-      .circle {
-        width: 20px;
-        height: 20px;
-        background-color: #FF0000;
-        border-radius: 50%;
+      .dot.active {
+        opacity: 1;
+        width: 15px;
+        height: 15px;
+        background-color: var(--ddd-theme-default-skyBlue);
       }
     `];
   }
 
   // Lit render the HTML
   render() {
+    let dots = [];
+    for (let i = 0; i < this.total; i++) {
+      dots.push(html`
+        <span @click="${this._handleDotClick}" data-index="${i}" class="dot ${i === this.curIndex ? 'active' : ''}"></span>
+      `);
+    }
+
     return html`
-      <div class="wrapper">
-        <div>
-          <div class="circle"></div>
-        </div>
-      </div>`;
+      <div class="dots">
+        ${dots}
+      </div>
+      `;
   }
+
+  _handleDotClick(e) {
+    const indexChange = new CustomEvent("play-list-index-changed", {
+      composed: true,
+      bubbles: true,
+      detail: {
+        index: parseInt(e.target.dataset.index)
+      },
+    });
+    this.dispatchEvent(indexChange);
+  }
+
 }
 
 globalThis.customElements.define(SlideIndicator.tag, SlideIndicator);

@@ -6,6 +6,8 @@ import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./play-list-slide.js";
+import "./slide-arrow.js";
+import "./slide-indicator.js";
 
 /**
  * `play-list-project`
@@ -21,19 +23,19 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
+    this.curIndex = 0;
+    this.topHeading = "";
+    this.secondHeading = "";
+    this.slides = Array.from(this.querySelectorAll("play-list-slide"));
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      curIndex: { type: Number, reflect: true },
+      topHeading: { type: String},
+      secondHeading: { type: String},
     };
   }
 
@@ -43,16 +45,28 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
+        background-color: var(--ddd-theme-default-skyMaxLight);
+        width: 800px;
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
-      h3 span {
-        font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
+      .title-top {
+        color: var(--ddd-theme-default-skyBlue);
+      }
+      .slide-title {
+        margin-top: var(--ddd-spacing-2);
+        margin-bottom: var(--ddd-spacing-10);
+        color: var(--ddd-theme-default-beaverBlue);
+      }
+      .slide-content {
+        margin-top: var(--ddd-spacing-10);
+        margin-bottom: var(--ddd-spacing-4);
+        width: 400px;
+        height: 150px;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
     `];
   }
@@ -61,12 +75,67 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
       <div class="wrapper">
-        <play-list-slide></play-list-slide>
-        <div>
-          <slide-indicator></slide-indicator>
+        <h5 class="title-top">${this.topHeading}</h5>
+        <h1 class="slide-title">${this.secondHeading}</h1>
+        
+        <div class="slide-content">
+          <slot></slot>
         </div>
+        
+        <slide-arrow
+          @prev-clicked="${this.back}"
+          @next-clicked="${this.next}">
+        </slide-arrow>
+
+        <slide-indicator
+          .total="${this.slides.length}"
+          .curIndex="${this.curIndex}"
+          @play-list-index-changed="${this._handleIndexChange}">
+        </slide-indicator>
       </div>
       `;
+  }
+
+  firstUpdated() {  
+    this._updateSlides();
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('curIndex')) {
+      this._updateSlides();
+    }
+  }
+
+  _updateSlides() {
+    this.slides.forEach((slide, i) => {
+      slide.active = (i === this.curIndex)
+    });
+
+    const curSlide = this.slides[this.curIndex];
+    if (curSlide) {
+      this.topHeading = curSlide.getAttribute("topHeading");
+      this.secondHeading = curSlide.getAttribute("secondHeading");
+    } 
+  }
+
+  next() {
+    if (this.curIndex < this.slides.length - 1) {
+      this.curIndex++;
+    }
+  }
+
+  back() {
+    if (this.curIndex > 0) {
+      this.curIndex--;
+    }
+  }
+
+  _handleIndexChange(e) {
+    const newIndex = e.detail.index;
+    
+    if (newIndex >= 0 && newIndex < this.slides.length) {
+      this.curIndex = newIndex;
+    }
   }
 }
 

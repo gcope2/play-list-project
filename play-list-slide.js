@@ -20,19 +20,14 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
+    this.active = false;
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
+      active: { type: Boolean, reflect: true},
     };
   }
 
@@ -40,23 +35,11 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
   static get styles() {
     return [super.styles,
     css`
-      :host {
+      :host([active]) {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
       }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
-      }
-      .slide-title {
-        margin-top: var(--ddd-spacing-2);
-        margin-bottom: var(--ddd-spacing-10);
-      }
-      .slide-body {
-        margin-top: var(--ddd-spacing-10);
-        margin-bottom: var(--ddd-spacing-4);
+      :host(:not([active])) {
+        display: none;
       }
     `];
   }
@@ -64,10 +47,8 @@ export class PlayListSlide extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-      <div class="wrapper">
-        <h5 class="title-top">TOP LINE HEADING</h5>
-        <h1 class="slide-title">Slide 1, sub-heading</h1>
-        <p class="slide-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non gravida neque. Quisque vulputate velit eu mauris mattis, at ultricies nisl varius. Nulla facilisi. Nulla dignissim diam in dui blandit lacinia. Nulla nec viverra magna. Ut felis odio, ullamcorper eget mattis vel, ultricies sit amet purus. In massa tortor, auctor cursus dignissim et, dictum eu est. Etiam metus est, mattis ut tempor eget, aliquam aliquet massa. Duis in hendrerit tellus, id viverra odio. Cras bibendum consequat erat, id condimentum metus lobortis vitae. Duis id dictum lectus, vitae ullamcorper mi. Duis ex massa, posuere vel sapien at, pulvinar tempus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce finibus orci nec odio venenatis, eget blandit eros vehicula.</p>
+      <div class="slide">
+        <slot></slot>
       </div>
       `;
   }

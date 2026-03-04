@@ -20,19 +20,12 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
   }
 
   // Lit reactive properties
   static get properties() {
     return {
       ...super.properties,
-      title: { type: String },
     };
   }
 
@@ -42,16 +35,25 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
       }
       .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--ddd-spacing-2);
       }
-      h3 span {
-        font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
+      button {
+        background-color: var(--ddd-theme-default-white);
+        color: var(--ddd-theme-default-beaverBlue);
+        border-color: var(--ddd-theme-default-beaverBlue);
+        padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
+        border-radius: var(--ddd-radius-rounded);
+        cursor: pointer;
+        font-size: var(--ddd-font-size-s);
+        font-weight: var(--ddd-font-weight-black);
+      }
+      button:hover {
+        opacity: 0.8;
       }
     `];
   }
@@ -60,8 +62,8 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
     <div class="wrapper">
-      <h3><span>${this.t.title}:</span> ${this.title}</h3>
-      <slot></slot>
+      <button class="back" @click=${() => this.dispatchEvent(new CustomEvent('prev-clicked', {bubbles: true, composed: true }))}><</button>
+      <button class="next" @click=${() => this.dispatchEvent(new CustomEvent('next-clicked', {bubbles: true, composed: true}))}>></button>
     </div>`;
   }
 }

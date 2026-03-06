@@ -55,7 +55,7 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
         cursor: pointer;
         font-size: var(--ddd-font-size-s);
         font-weight: var(--ddd-font-weight-black);
-        border-width: 3px;
+        border-width: var(--ddd-border-size-md);
       }
       button:hover {
         opacity: 0.8;

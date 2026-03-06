@@ -47,7 +47,9 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         display: block;
         background-color: var(--ddd-theme-default-slateMaxLight);
         font-family: var(--ddd-font-navigation);
-        width: 850px;
+        width: 800px;
+        margin: var(--ddd-spacing-2) var(--ddd-spacing-2) var(--ddd-spacing-2) 25px !important;
+        box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
@@ -85,6 +87,11 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       .arrow-wrapper {
         position: relative;
         top: -200px;
+      }
+      @media (prefers-color-scheme: dark) {
+        .slide-content {
+          color: black;
+        }
       }
     `];
   }

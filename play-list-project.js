@@ -74,6 +74,7 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         height: 150px;
         overflow-y: auto;
         overflow-x: hidden;
+        color: black;
       }
       .line {
         margin-top: var(--ddd-spacing-10);
@@ -87,11 +88,6 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       .arrow-wrapper {
         position: relative;
         top: -200px;
-      }
-      @media (prefers-color-scheme: dark) {
-        .slide-content {
-          color: black;
-        }
       }
     `];
   }

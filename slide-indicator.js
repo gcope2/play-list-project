@@ -42,7 +42,7 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
       }
       .dots {
         display: flex;
-        justify-content: center;
+        justify-content: left;
         gap: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-2);
       }
@@ -51,7 +51,7 @@ export class SlideIndicator extends DDDSuper(I18NMixin(LitElement)) {
         height: 12px;
         border-radius: var(--ddd-radius-rounded);
         cursor: pointer;
-        background-color: var(--ddd-theme-default-limestoneLight);
+        background-color: var(--ddd-theme-default-limestoneGray);
       }
       .dot.active {
         opacity: 1;

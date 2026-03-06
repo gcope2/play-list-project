@@ -34,13 +34,17 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: block;
-      }
-      .wrapper {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: var(--ddd-spacing-2);
+      }
+      .back-wrapper {
+        justify-content: left;
+        margin-left: -24px;
+      }
+      .next-wrapper {
+        justify-content: right;
+        margin-right: -24px;
       }
       button {
         background-color: var(--ddd-theme-default-white);
@@ -51,6 +55,7 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
         cursor: pointer;
         font-size: var(--ddd-font-size-s);
         font-weight: var(--ddd-font-weight-black);
+        border-width: 3px;
       }
       button:hover {
         opacity: 0.8;
@@ -61,10 +66,13 @@ export class SlideArrow extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-    <div class="wrapper">
+    <div class="back-wrapper">
       <button class="back" @click=${() => this.dispatchEvent(new CustomEvent('prev-clicked', {bubbles: true, composed: true }))}><</button>
+    </div>
+    <div class="next-wrapper">
       <button class="next" @click=${() => this.dispatchEvent(new CustomEvent('next-clicked', {bubbles: true, composed: true}))}>></button>
-    </div>`;
+    </div>
+    `;
   }
 }
 
